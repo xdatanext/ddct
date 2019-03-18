@@ -182,6 +182,10 @@ def installer(args):
 
 if __name__ == "__main__":
 
+    if os.geteuid() != 0:
+        print(sys.argv[0] + " needs to be executed as root")
+        sys.exit(1)
+
     top_parser = scaffold.get_argparser(add_help=False)
     kargs, rem = top_parser.parse_known_args()
 
